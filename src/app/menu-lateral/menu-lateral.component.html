@@ -1,0 +1,26 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    opened="true"
+    style="background-color: #769c83"
+  >
+    <mat-nav-list>
+      <h4 class="shadow-sm pb-2"><span class="ms-3 mb-2">Productor</span></h4>
+      <a
+        mat-list-item
+        class="nav-link"
+        (click)="navegarConfiguracionProductos()"
+        ><i class="fa-solid fa-lemon me-1"></i>Productos</a
+      >
+      <a mat-list-item class="nav-link" (click)="navegarConfiguracionSubastas()"
+        ><i class="fa-solid fa-gavel me-1"></i>Mis subastas</a
+      >
+      <a mat-list-item class="nav-link" (click)="navegarConfiguracionSubastas()"
+        >Sobre nosotros</a
+      >
+      <!-- Agrega más elementos según sea necesario -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

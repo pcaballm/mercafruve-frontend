@@ -1,0 +1,85 @@
+<div class="m-4">
+  <h2>Configuración de productos</h2>
+  <hr />
+</div>
+<div class="m-4">
+  <dx-data-grid
+    #dataGrid
+    [dataSource]="dataSource"
+    (onRowUpdating)="onRowUpdating($event)"
+    (onRowUpdated)="onRowUpdated($event)"
+    (onInitialized)="onInitialized()"
+    (onEditorPreparing)="onEditorPreparing($event)"
+    (onEditingStart)="onEditingStart()"
+    [paging]="{
+      enabled: true,
+      pageSize: 10
+    }"
+    [pager]="{
+      showPageSizeSelector: true,
+      allowedPageSizes: [5, 10, 20],
+      showInfo: true
+    }"
+  >
+    <dxo-paging [enabled]="true"></dxo-paging>
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+      [confirmDelete]="false"
+      ><dxo-form></dxo-form>
+    </dxo-editing>
+
+    <dxi-column
+      dataField="id"
+      [width]="50"
+      [allowEditing]="false"
+      class="non-interactive"
+    ></dxi-column>
+    <dxi-column dataField="nombre"></dxi-column>
+    <dxi-column dataField="descripcion" [width]="500"></dxi-column>
+    <dxi-column dataField="precio" [width]="100"></dxi-column>
+    <dxi-column dataField="productor"></dxi-column>
+    <dxi-column dataField="tipo"></dxi-column>
+    <dxi-column
+      dataField="imagenCargada"
+      caption="Imagen"
+      cellTemplate="imageTemplate"
+      editCellTemplate="editImageTemplate"
+    >
+    </dxi-column>
+    <dxi-column dataField="buttons" caption="" type="buttons"></dxi-column>
+    <div *dxTemplate="let data of 'imageTemplate'">
+      <img [src]="data.value" style="width: 25px; height: 25px" />
+    </div>
+    <div *dxTemplate="let data of 'editImageTemplate'">
+      <!-- <img
+        #uploadedImage
+        class="uploadedImage d-inline"
+        [src]="data.value"
+        style="width: 75px; height: 75px"
+      /> -->
+      <dx-file-uploader
+        #fileUploader
+        [multiple]="false"
+        accept="image/*"
+        uploadMode="instantly"
+        (onValueChanged)="onValueChangedImage($event)"
+        (onUploaded)="onUploadedImage($event, data)"
+        (onUploadError)="onUploadErrorImage($event)"
+      ></dx-file-uploader>
+    </div>
+
+    <!-- <div *dxTemplate="let rowData of 'optionsTemplate'">
+      <div>
+        <a class="btn btn-sm" (click)="sendRequestUpdate(rowData.data)">
+          <i class="fa-solid fa-pen"></i>
+        </a>
+        <a class="btn btn-sm" (click)="sendRequestDelete(rowData.data.id)">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </div>
+    </div> -->
+  </dx-data-grid>
+</div>

@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="producto">
+    <div class="imagen">
+      <h2>{{ producto.nombre }}</h2>
+      <img
+        [src]="producto.imagenCargada"
+        alt="{{ producto.nombre }}"
+        style="width: 100%; max-width: 600px"
+      />
+    </div>
+    <div class="detalles">
+      <table>
+        <thead>
+          <tr>
+            <th class="w-75"></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Productor</th>
+            <td>{{ producto.productor }}</td>
+          </tr>
+          <tr>
+            <th>Tipo</th>
+            <td>{{ producto.tipo }}</td>
+          </tr>
+          <tr>
+            <th>Ciudad</th>
+            <td>Alicante</td>
+          </tr>
+          <tr>
+            <th>Stock</th>
+            <td>20</td>
+          </tr>
+          <tr>
+            <th>Precio</th>
+            <td>{{ producto.precio }}€</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="descripcion">
+        <h3 class="fw-bold">Descripción</h3>
+        <p>
+          {{ producto.descripcion }}
+        </p>
+      </div>
+    </div>
+    <div class="carrito mt-5">
+      <button class="btn" style="background: #89b999; color: black">
+        <i class="fa-solid fa-cart-shopping"></i> Añadir al carrito
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="m-4">
+  <h2>Configuración de subastas</h2>
+  <hr />
+</div>
+<div class="m-4">
+  <dx-data-grid
+    #dataGrid
+    [dataSource]="dataSource"
+    (onInitialized)="onInitialized()"
+    (onEditingStart)="onEditingStart()"
+    [paging]="{
+      enabled: true,
+      pageSize: 10
+    }"
+    [pager]="{
+      showPageSizeSelector: true,
+      allowedPageSizes: [5, 10, 20],
+      showInfo: true
+    }"
+  >
+    <dxo-paging [enabled]="true"></dxo-paging>
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowAdding]="true"
+      [allowDeleting]="true"
+      [confirmDelete]="false"
+      ><dxo-form></dxo-form>
+    </dxo-editing>
+
+    <dxi-column
+      dataField="id"
+      [width]="50"
+      [allowEditing]="false"
+      class="non-interactive"
+    ></dxi-column>
+    <dxi-column dataField="nombre"></dxi-column>
+    <dxi-column dataField="descripcion" [width]="500"></dxi-column>
+    <dxi-column dataField="producto"></dxi-column>
+    <dxi-column dataField="productor"></dxi-column>
+    <dxi-column dataField="cantidad"></dxi-column>
+    <dxi-column dataField="precioSalida"></dxi-column>
+    <dxi-column dataField="pujaMinima"></dxi-column>
+    <dxi-column
+      dataField="fechaHoraLimite"
+      dataType="datetime"
+      format="dd/MM/yyyy"
+    ></dxi-column>
+    <dxi-column
+      dataField="fechaHoraInicio"
+      dataType="datetime"
+      format="dd/MM/yyyy"
+    ></dxi-column>
+    <dxi-column dataField="buttons" caption="" type="buttons"></dxi-column>
+  </dx-data-grid>
+</div>

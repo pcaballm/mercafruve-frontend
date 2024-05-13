@@ -1,0 +1,45 @@
+.producto {
+  display: grid;
+  grid-template-columns: 50% 25%; /* Divide el contenedor en dos columnas iguales */
+  margin-top: 5%;
+}
+
+.imagen {
+  text-align: center;
+}
+
+.detalles {
+  align-self: center;
+  width: auto;
+  font-size: large;
+}
+
+li {
+  list-style-type: none; /* Esto quita los puntos o números */
+}
+
+span {
+  font-weight: bold;
+}
+
+img {
+  background: none;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 20px; /* Controla el espacio entre celdas */
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.descripcion {
+  padding-left: 20px;
+}
+
+.carrito {
+  grid-column: 1/-1;
+  text-align: center;
+}

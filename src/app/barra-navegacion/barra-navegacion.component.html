@@ -1,0 +1,47 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #89b999"
+>
+  <a
+    class="ms-4 navbar-brand text-black"
+    (click)="navegarProductos()"
+    style="cursor: pointer"
+    ><i class="fa-solid fa-shop me-1"></i>MercaFruve</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item ms-4">
+        <a class="nav-link text-black" href="#"
+          ><i class="fa-solid fa-gavel me-1"></i>Subastas</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-black">Sobre nosotros</a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <form class="m-5 d-flex form-inline my-2 my-lg-0">
+      <input
+        class="me-2 form-control mr-sm-2"
+        type="search"
+        placeholder="Buscar"
+      />
+      <button class="btn my-2 my-sm-0" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+  </div>
+</nav>

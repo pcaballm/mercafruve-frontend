@@ -1,0 +1,18 @@
+<div class="container responsive-grid">
+  <mat-card
+    *ngFor="let producto of productos"
+    (click)="verDetalleProducto(producto.id)"
+  >
+    <mat-card-header>
+      <mat-card-title> {{ producto.nombre }} </mat-card-title>
+    </mat-card-header>
+    <br />
+    <img mat-card-image [src]="producto.imagenCargada" />
+    <mat-card-content>
+      <br />
+      <p>
+        {{ producto.descripcion }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

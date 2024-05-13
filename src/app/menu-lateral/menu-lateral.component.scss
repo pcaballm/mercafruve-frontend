@@ -1,0 +1,14 @@
+.sidenav-container {
+    height: 100%;
+  }
+  
+  mat-sidenav-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 64px);
+  }
+  
+  mat-sidenav {
+    width: 200px;
+  }
