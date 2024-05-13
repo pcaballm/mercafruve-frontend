@@ -8,6 +8,8 @@
     [dataSource]="dataSource"
     (onInitialized)="onInitialized()"
     (onEditingStart)="onEditingStart()"
+    (onEditorPreparing)="onEditorPreparing($event)"
+    (onRowUpdating)="onRowUpdating($event)"
     [paging]="{
       enabled: true,
       pageSize: 10
@@ -39,18 +41,23 @@
     <dxi-column dataField="producto"></dxi-column>
     <dxi-column dataField="productor"></dxi-column>
     <dxi-column dataField="cantidad"></dxi-column>
-    <dxi-column dataField="precioSalida"></dxi-column>
-    <dxi-column dataField="pujaMinima"></dxi-column>
+    <dxi-column dataField="precioSalida" [customizeText]="customizePrice">
+    </dxi-column>
     <dxi-column
-      dataField="fechaHoraLimite"
-      dataType="datetime"
-      format="dd/MM/yyyy"
+      dataField="pujaMinima"
+      [customizeText]="customizePrice"
     ></dxi-column>
     <dxi-column
       dataField="fechaHoraInicio"
       dataType="datetime"
-      format="dd/MM/yyyy"
+      format="dd/MM/yyyy HH:mm"
     ></dxi-column>
+    <dxi-column
+      dataField="fechaHoraLimite"
+      dataType="datetime"
+      format="dd/MM/yyyy HH:mm"
+    ></dxi-column>
+
     <dxi-column dataField="buttons" caption="" type="buttons"></dxi-column>
   </dx-data-grid>
 </div>

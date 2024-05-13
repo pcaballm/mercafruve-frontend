@@ -17,6 +17,8 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
   public dataSource: any;
   private productoViejoActualizar: any;
   editando: boolean = false;
+  fechaHoraInicio: any;
+  fechaHoraLimite: any;
   constructor(
     private subastaService: SubastaService,
     private commonFunctionsService: CommonFunctionsService
@@ -85,8 +87,9 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
         editorType: 'dxTextBox',
         colSpan: 2,
         editorOptions: {
-          maxLength: 10,
+          maxLength: 20,
         },
+        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
       },
       {
         dataField: 'descripcion',
@@ -101,39 +104,34 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
         editorType: 'dxTextBox',
         colSpan: 1,
         editorOptions: {},
+        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
       },
       {
         dataField: 'productor',
         editorType: 'dxTextBox',
         colSpan: 2,
         editorOptions: {},
+        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
       },
       {
         dataField: 'cantidad',
         editorType: 'dxNumberBox',
         colSpan: 2,
         editorOptions: {},
+        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
       },
       {
         dataField: 'precioSalida',
         editorType: 'dxNumberBox',
         colSpan: 2,
-        editorOptions: {},
+        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
       },
       {
         dataField: 'pujaMinima',
         editorType: 'dxNumberBox',
         colSpan: 2,
         editorOptions: {},
-      },
-      {
-        dataField: 'fechaHoraLimite',
-        editorType: 'dxDateBox',
-        colSpan: 2,
-        editorOptions: {
-          type: 'datetime',
-          displayFormat: 'yyyy/MM/dd HH:mm',
-        },
+        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
       },
       {
         dataField: 'fechaHoraInicio',
@@ -143,6 +141,17 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
           type: 'datetime',
           displayFormat: 'yyyy/MM/dd HH:mm',
         },
+        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
+      },
+      {
+        dataField: 'fechaHoraLimite',
+        editorType: 'dxDateBox',
+        colSpan: 2,
+        editorOptions: {
+          type: 'datetime',
+          displayFormat: 'yyyy/MM/dd HH:mm',
+        },
+        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
       },
     ];
     this.dataGrid.editing.form!.colCount = 10;
@@ -150,6 +159,30 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
 
   onEditingStart() {
     this.editando = true;
+  }
+
+  onEditorPreparing(e: any) {
+    console.log('onEditorPreparing');
+    if (e.parentType === 'dataRow' && e.dataField === 'fechaHoraInicio') {
+      this.fechaHoraInicio = e.value;
+    }
+    if (e.parentType === 'dataRow' && e.dataField === 'fechaHoraLimite') {
+      this.fechaHoraLimite = e.value;
+    }
+    if (e.parentType === 'dataRow' && e.dataField === 'nombre') {
+      if (e.editorOptions.value !== '') {
+        e.editorOptions.disabled = true;
+      }
+    }
+  }
+
+  customizePrice = (cellInfo: any) => {
+    return `${cellInfo.value} €`;
+  };
+
+  onRowUpdating(event: any) {
+    console.log('se va a actualizar', event);
+    this.productoViejoActualizar = event.oldData;
   }
   ngOnDestroy(): void {}
 }

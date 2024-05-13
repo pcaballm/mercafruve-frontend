@@ -14,4 +14,7 @@ export class BarraNavegacionComponent implements OnInit, OnDestroy {
   navegarProductos() {
     this.router.navigate(['/productos']);
   }
+  navegarSubastas() {
+    this.router.navigate(['/subastas']);
+  }
 }

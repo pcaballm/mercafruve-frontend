@@ -32,7 +32,11 @@ export class SubastaService {
       .append('fechaHoraLimite', subasta.fechaHoraLimite)
       .append('fechaHoraInicio', subasta.fechaHoraInicio);
 
-    return this.http.post(`${this.baseUrl}/nuevo`, { params });
+    const options = {
+      params: params,
+    };
+
+    return this.http.post(`${this.baseUrl}/nuevo`, [], options);
   }
 
   editarSubasta(subasta: Subasta) {
@@ -47,7 +51,11 @@ export class SubastaService {
       .append('fechaHoraLimite', subasta.fechaHoraLimite)
       .append('fechaHoraInicio', subasta.fechaHoraInicio);
 
-    return this.http.put(`${this.baseUrl}/editar`, { params });
+    const options = {
+      params: params,
+    };
+
+    return this.http.put(`${this.baseUrl}/editar`, [], options);
   }
 
   obtenerSubasta(id: number): Observable<any> {

@@ -1,0 +1,52 @@
+<div class="m-4">
+  <h2>Subastas</h2>
+  <hr />
+</div>
+<div class="container responsive-grid">
+  <mat-card
+    *ngFor="
+      let subasta of subastas | paginate : { itemsPerPage: 10, currentPage: p }
+    "
+    class="mt-2"
+    [style]="obtenerColor(subasta.fechaHoraInicio, subasta.fechaHoraLimite)"
+  >
+    <mat-card-header>
+      <mat-card-title> {{ subasta.nombre }} </mat-card-title>
+    </mat-card-header>
+    <br />
+    <mat-card-content class="card-content">
+      <div class="card-section">
+        <span> {{ subasta.producto }}</span>
+        <p>{{ subasta.descripcion }}</p>
+      </div>
+      <div class="card-section">
+        <span>Precio salida</span>
+        <p>{{ subasta.precioSalida }} €</p>
+        <span>Puja mínima</span>
+        <p>{{ subasta.pujaMinima }} €</p>
+      </div>
+      <div class="card-section">
+        <span>Fecha inicio</span>
+        <p>{{ subasta.fechaHoraInicio | date : "dd/MM/yyyy HH:mm" }}</p>
+        <span>Fecha límite</span>
+        <p>{{ subasta.fechaHoraLimite | date : "dd/MM/yyyy HH:mm" }}</p>
+      </div>
+      <div class="card-section">
+        <i
+          *ngIf="
+            comprobarAcceso(subasta.fechaHoraInicio, subasta.fechaHoraLimite)
+          "
+          class="fa-regular fa-newspaper btn btn-lg mt-2"
+          (click)="navegarSubasta(subasta.id)"
+        ></i>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <pagination-controls
+    class="my-pagination mt-4"
+    style="text-align: center"
+    previousLabel="Anterior"
+    nextLabel="Siguiente"
+    (pageChange)="p = $event"
+  ></pagination-controls>
+</div>

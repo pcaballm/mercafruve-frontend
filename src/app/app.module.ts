@@ -25,6 +25,8 @@ import {
 } from '@angular/material/card';
 import { DetalleProductoComponent } from './productos/detalle-producto/detalle-producto.component';
 import { ConfiguracionSubastasComponent } from './configuracion-subastas/configuracion-subastas.component';
+import { SubastasComponent } from './subastas/subastas.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +36,7 @@ import { ConfiguracionSubastasComponent } from './configuracion-subastas/configu
     ProductosComponent,
     DetalleProductoComponent,
     ConfiguracionSubastasComponent,
+    SubastasComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { ConfiguracionSubastasComponent } from './configuracion-subastas/configu
     DxDateBoxModule,
     HttpClientModule,
     MatCardModule,
+    NgxPaginationModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

@@ -4,6 +4,7 @@ import { ConfiguracionProductosComponent } from './configuracion-productos/confi
 import { ProductosComponent } from './productos/productos.component';
 import { DetalleProductoComponent } from './productos/detalle-producto/detalle-producto.component';
 import { ConfiguracionSubastasComponent } from './configuracion-subastas/configuracion-subastas.component';
+import { SubastasComponent } from './subastas/subastas.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'detalle-producto', component: DetalleProductoComponent },
   { path: 'configuracion-subastas', component: ConfiguracionSubastasComponent },
+  { path: 'subastas', component: SubastasComponent },
 ];
 
 @NgModule({

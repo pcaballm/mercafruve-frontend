@@ -1,0 +1,20 @@
+mat-card-content {
+  display: grid;
+  grid-template-columns: 30% 30% 30% 10%;
+}
+
+span {
+  font-weight: bold;
+}
+
+.card-section {
+  padding: 10px; /* Añade algo de espacio interior */
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: #89b999;
+}
+
+.container {
+  display: grid;
+}
