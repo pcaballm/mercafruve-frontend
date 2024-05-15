@@ -21,7 +21,7 @@ export class SubastasComponent implements OnInit, OnDestroy {
   }
 
   navegarSubasta(id: any) {
-    this.router.navigate(['/subasta'], {
+    this.router.navigate(['/detalle-subasta'], {
       queryParams: {
         id: id,
       },

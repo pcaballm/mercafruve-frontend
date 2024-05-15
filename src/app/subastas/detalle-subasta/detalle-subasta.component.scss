@@ -1,0 +1,29 @@
+img {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+h2 {
+  text-align: start;
+}
+.imagen {
+  text-align: center;
+}
+
+span {
+  font-weight: bold;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-card-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+strong {
+  font-size: 50px;
+}

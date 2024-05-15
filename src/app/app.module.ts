@@ -14,7 +14,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfiguracionProductosComponent } from './configuracion-productos/configuracion-productos.component';
-import { DxDataGridModule, DxDateBoxModule } from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxDataGridModule,
+  DxDateBoxModule,
+  DxNumberBoxModule,
+  DxValidatorModule,
+} from 'devextreme-angular';
 import { DxFileUploaderModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductosComponent } from './productos/productos.component';
@@ -27,6 +33,8 @@ import { DetalleProductoComponent } from './productos/detalle-producto/detalle-p
 import { ConfiguracionSubastasComponent } from './configuracion-subastas/configuracion-subastas.component';
 import { SubastasComponent } from './subastas/subastas.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DetalleSubastaComponent } from './subastas/detalle-subasta/detalle-subasta.component';
+import { SubastaAccionComponent } from './subastas/detalle-subasta/subasta-accion/subasta-accion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +45,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DetalleProductoComponent,
     ConfiguracionSubastasComponent,
     SubastasComponent,
+    DetalleSubastaComponent,
+    SubastaAccionComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +65,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     MatCardModule,
     NgxPaginationModule,
+    DxNumberBoxModule,
+    DxButtonModule,
+    DxValidatorModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

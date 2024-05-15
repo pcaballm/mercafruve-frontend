@@ -1,0 +1,113 @@
+<div class="m-4">
+  <h2>{{ subasta?.nombre }}</h2>
+  <hr />
+</div>
+<div class="grid">
+  <div class="ms-4">
+    <mat-card class="mt-3">
+      <mat-card-header>
+        <div class="imagen m-3">
+          <h2>{{ producto?.nombre }}</h2>
+          <img [src]="producto?.imagenCargada" alt="{{ producto?.nombre }}" />
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card-title>
+          <i class="fa-solid fa-circle-info"></i> Información subasta
+        </mat-card-title>
+        <div class="grid-card-content mt-2">
+          <div class="card-section">
+            <span>Productor</span>
+            <p>{{ subasta?.productor }}</p>
+            <span>Cantidad</span>
+            <p>{{ subasta?.cantidad }} kg</p>
+          </div>
+          <div class="card-section">
+            <span>Precio salida</span>
+            <p>{{ subasta?.precioSalida }} €</p>
+            <span>Puja minima</span>
+            <p>{{ subasta?.pujaMinima }} €</p>
+          </div>
+          <div class="card-section">
+            <span>Fecha inicio</span>
+            <p>{{ subasta?.fechaHoraInicio | date : "dd/MM/yyyy HH:mm" }}</p>
+            <span>Fecha límite</span>
+            <p>{{ subasta?.fechaHoraLimite | date : "dd/MM/yyyy HH:mm" }}</p>
+          </div>
+        </div>
+        <div>
+          <span> Descripción </span>
+          <p>{{ subasta?.descripcion }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="m-3">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>
+          <i class="fa-solid fa-circle-info"></i> Información pujas
+        </mat-card-title>
+        <mat-card-title class="mt-2"
+          >Puja actual: {{ subastaAccion?.pujaActual }}€</mat-card-title
+        >
+        <div class="d-flex mt-3">
+          <dx-number-box
+            [(value)]="puja"
+            [min]="puja"
+            placeholder="Introduce puja"
+          >
+            <dx-validator #validator>
+              <dxi-validation-rule
+                type="required"
+                message="El número es requerido"
+              >
+              </dxi-validation-rule>
+            </dx-validator>
+          </dx-number-box>
+          <dx-button class="m-1" text="Pujar" (onClick)="pujar()"> </dx-button>
+        </div>
+        <dx-data-grid
+          #dataGrid
+          class="mt-2"
+          [dataSource]="dataSource"
+          [columns]="columns"
+          [showBorders]="true"
+          [paging]="{
+            enabled: true,
+            pageSize: 7
+          }"
+          [pager]="{
+            showPageSizeSelector: true,
+            allowedPageSizes: [10, 100],
+            showInfo: true
+          }"
+        >
+          <dxi-column dataField="usuario" [width]="150"></dxi-column>
+          <dxi-column
+            dataField="fechaHoraPuja"
+            dataType="date"
+            [format]="{ formatter: formatDate }"
+            sortOrder="desc"
+          ></dxi-column>
+          <dxi-column dataField="puja" [width]="150"></dxi-column>
+        </dx-data-grid>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="mt-3 me-4">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>
+          <i class="fa-regular fa-clock"></i> Tiempo restante
+        </mat-card-title>
+        <div class="m-2">
+          <strong>{{ tiempo?.hours }}:</strong>
+          <strong>{{ tiempo?.minutes }}:</strong>
+          <strong>{{ tiempo?.seconds }}</strong>
+        </div>
+        <strong></strong>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

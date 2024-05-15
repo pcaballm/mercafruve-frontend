@@ -62,4 +62,36 @@ export class SubastaService {
     let params = new HttpParams().set('id', id);
     return this.http.get(`${this.baseUrl}/obtener`, { params });
   }
+
+  obtenerSubastaAccion(id: number): Observable<any> {
+    let params = new HttpParams().set('id', id);
+    return this.http.get(`${this.baseUrl}/obtener/subastaAccion`, { params });
+  }
+
+  pujarSubasta(
+    id: number,
+    usuario: string,
+    puja: number,
+    fechaHora: string
+  ): Observable<any> {
+    let params = new HttpParams()
+      .append('id', id)
+      .append('usuario', usuario)
+      .append('puja', puja)
+      .append('fechaHora', fechaHora);
+
+    const options = {
+      params: params,
+    };
+
+    return this.http.put(`${this.baseUrl}/subastaAccion/puja`, [], options);
+  }
+
+  obtenerLogSubastas(id: number): Observable<any> {
+    let params = new HttpParams().append('id', id);
+    const options = {
+      params: params,
+    };
+    return this.http.get(`${this.baseUrl}/obtenerTodos/logSubasta`, options);
+  }
 }
