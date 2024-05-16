@@ -22,7 +22,7 @@ import {
   DxValidatorModule,
 } from 'devextreme-angular';
 import { DxFileUploaderModule } from 'devextreme-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ProductosComponent } from './productos/productos.component';
 import {
   MatCardContent,
@@ -35,6 +35,10 @@ import { SubastasComponent } from './subastas/subastas.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DetalleSubastaComponent } from './subastas/detalle-subasta/detalle-subasta.component';
 import { SubastaAccionComponent } from './subastas/detalle-subasta/subasta-accion/subasta-accion.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +51,7 @@ import { SubastaAccionComponent } from './subastas/detalle-subasta/subasta-accio
     SubastasComponent,
     DetalleSubastaComponent,
     SubastaAccionComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,8 +73,13 @@ import { SubastaAccionComponent } from './subastas/detalle-subasta/subasta-accio
     DxNumberBoxModule,
     DxButtonModule,
     DxValidatorModule,
+    FormsModule,
+    CommonModule,
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [
+    provideAnimationsAsync(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

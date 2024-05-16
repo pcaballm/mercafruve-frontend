@@ -12,7 +12,7 @@ export class BarraNavegacionComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
   ngOnInit(): void {}
   navegarProductos() {
-    this.router.navigate(['/productos']);
+    this.router.navigate(['/']);
   }
   navegarSubastas() {
     this.router.navigate(['/subastas']);
