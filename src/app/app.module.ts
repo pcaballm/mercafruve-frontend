@@ -38,7 +38,8 @@ import { SubastaAccionComponent } from './subastas/detalle-subasta/subasta-accio
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthInterceptor } from './helpers/auth.interceptor';
+import { AuthInterceptor } from '../helpers/auth.interceptor';
+import { RegistroComponent } from './registro/registro.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
     DetalleSubastaComponent,
     SubastaAccionComponent,
     LoginComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,

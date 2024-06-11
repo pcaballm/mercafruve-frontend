@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subasta } from '../../modelos/subasta';
+import { Subasta } from '../../models/subasta';
 import { Router } from '@angular/router';
 import { SubastaService } from '../../services/subasta.service';
 

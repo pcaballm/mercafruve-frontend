@@ -8,6 +8,15 @@ export interface Credenciales {
   password: string;
 }
 
+export interface CredencialesRegistro {
+  nombre: string;
+  apellidos: string;
+  email: string;
+  nombreUsuario: string;
+  password: string;
+  rol: string;
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,12 +28,43 @@ export class LoginComponent {
     password: '',
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  credencialesRegistro: CredencialesRegistro = {
+    nombre: '',
+    apellidos: '',
+    email: '',
+    nombreUsuario: '',
+    password: '',
+    rol: '',
+  };
+
+  inicio: boolean = true;
+
+  constructor(private authService: AuthService, private router: Router) {
+    if (authService.getToken()) {
+      this.router.navigate(['/']);
+    }
+  }
 
   login(form: NgForm) {
     console.log(form);
-    this.authService.login(this.credenciales).subscribe((response) => {
-      this.router.navigate(['/']);
-    });
+    this.authService
+      .login(this.credenciales)
+      .toPromise()
+      .then((response) => {
+        window.location.reload();
+        this.router.navigate(['/']);
+      });
+  }
+  cambiarRegistro() {
+    this.inicio = !this.inicio;
+  }
+  registro() {
+    this.authService
+      .registro(this.credencialesRegistro)
+      .toPromise()
+      .then((response) => {
+        window.location.reload();
+        this.router.navigate(['/']);
+      });
   }
 }

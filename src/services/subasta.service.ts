@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Subasta } from '../modelos/subasta';
+import { Subasta } from '../models/subasta';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export class SubastaService {
       .append('cantidad', subasta.cantidad)
       .append('precioSalida', subasta.precioSalida)
       .append('pujaMinima', subasta.pujaMinima)
-      .append('fechaHoraLimite', subasta.fechaHoraLimite)
+      .append('fechaHoraLimite', subasta.fechaHoraLimite.toLocaleString())
       .append('fechaHoraInicio', subasta.fechaHoraInicio);
 
     const options = {

@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" *ngIf="comprobarRol()">
   <mat-sidenav
     #sidenav
     mode="side"
@@ -24,3 +24,4 @@
   </mat-sidenav>
   <router-outlet></router-outlet>
 </mat-sidenav-container>
+<router-outlet></router-outlet>

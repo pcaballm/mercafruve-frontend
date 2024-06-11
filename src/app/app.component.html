@@ -1,2 +1,3 @@
-<app-barra-navegacion></app-barra-navegacion>
-<app-menu-lateral></app-menu-lateral>
+<app-barra-navegacion *ngIf="mostrarMenus"></app-barra-navegacion>
+<app-menu-lateral *ngIf="mostrarMenus"></app-menu-lateral>
+<app-login *ngIf="!mostrarMenus"></app-login>

@@ -3,12 +3,13 @@ import { SubastaService } from '../../../services/subasta.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ProductosService } from '../../../services/productos.service';
-import { Subasta } from '../../../modelos/subasta';
-import { Producto } from '../../../modelos/producto';
+import { Subasta } from '../../../models/subasta';
+import { Producto } from '../../../models/producto';
 import { DxDataGridComponent, DxValidatorComponent } from 'devextreme-angular';
-import { SubastaAccion } from '../../../modelos/subastaAccion';
+import { SubastaAccion } from '../../../models/subastaAccion';
 import moment from 'moment';
 import countdown from 'countdown';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-detalle-subasta',
@@ -37,7 +38,8 @@ export class DetalleSubastaComponent implements OnInit, OnDestroy {
     private subastaService: SubastaService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private productosService: ProductosService
+    private productosService: ProductosService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -79,11 +81,11 @@ export class DetalleSubastaComponent implements OnInit, OnDestroy {
   }
 
   pujar() {
-    console.log(new Date().toISOString());
+    let usuario: any = this.authService.getDatosToken()?.sub;
     this.subastaService
       .pujarSubasta(
         this.id,
-        'Juan',
+        usuario,
         this.puja,
         new Date().toISOString().split('Z')[0]
       )

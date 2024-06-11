@@ -1,8 +1,8 @@
-<div class="m-4">
-  <h2>Subastas</h2>
-  <hr />
-</div>
 <div class="container responsive-grid">
+  <div class="mt-4">
+    <h2>Subastas</h2>
+    <hr />
+  </div>
   <mat-card
     *ngFor="
       let subasta of subastas | paginate : { itemsPerPage: 10, currentPage: p }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-barra-navegacion',
@@ -8,7 +9,10 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class BarraNavegacionComponent implements OnInit, OnDestroy {
-  constructor(private router: Router) {}
+  token: any;
+  constructor(private router: Router, private authService: AuthService) {
+    this.token = this.authService.getToken();
+  }
   ngOnDestroy(): void {}
   ngOnInit(): void {}
   navegarProductos() {
@@ -16,5 +20,10 @@ export class BarraNavegacionComponent implements OnInit, OnDestroy {
   }
   navegarSubastas() {
     this.router.navigate(['/subastas']);
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.reload();
   }
 }

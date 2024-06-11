@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from '../../../modelos/producto';
+import { Producto } from '../../../models/producto';
 import { ProductosService } from '../../../services/productos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';

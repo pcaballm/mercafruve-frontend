@@ -25,6 +25,20 @@ export class AuthService {
       );
   }
 
+  registro(credenciales: any): Observable<any> {
+    return this.http
+      .post(`${this.baseUrl}/register`, credenciales, { observe: 'response' })
+      .pipe(
+        map((response: HttpResponse<any>) => {
+          const body = response.body;
+
+          localStorage.setItem('token', body.token!);
+
+          return body;
+        })
+      );
+  }
+
   getToken() {
     return localStorage.getItem('token');
   }
@@ -35,5 +49,9 @@ export class AuthService {
       return jwtDecode(token);
     }
     return null;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
   }
 }

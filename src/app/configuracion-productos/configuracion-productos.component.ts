@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { GridsEditMode } from 'devextreme/common/grids';
 import { ProductosService } from '../../services/productos.service';
-import { Producto } from '../../modelos/producto';
+import { Producto } from '../../models/producto';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
   DxDataGridComponent,
   DxFileUploaderComponent,
 } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-configuracion-productos',
@@ -34,7 +35,8 @@ export class ConfiguracionProductosComponent implements OnInit, OnDestroy {
 
   constructor(
     private productosService: ProductosService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private authService: AuthService
   ) {
     this.dataSource = new CustomStore({
       key: this.getDataSourceKey(),
@@ -61,12 +63,13 @@ export class ConfiguracionProductosComponent implements OnInit, OnDestroy {
       });
   }
   sendRequestInsert(values: any) {
+    let productor: any = this.authService.getDatosToken()?.sub;
     return this.productosService
       .insertarProducto(
         values.nombre,
         values.descripcion,
         values.precio,
-        values.productor,
+        productor,
         values.tipo,
         this.file
       )
@@ -82,12 +85,13 @@ export class ConfiguracionProductosComponent implements OnInit, OnDestroy {
 
   sendRequestUpdate(values: Producto) {
     values = this.combineObjects(this.productoViejoActualizar, values);
+    let productor: any = this.authService.getDatosToken()?.sub;
     return this.productosService
       .editarProducto(
         values.nombre,
         values.descripcion,
         values.precio,
-        values.productor,
+        productor,
         values.tipo,
         this.file
       )
@@ -137,12 +141,6 @@ export class ConfiguracionProductosComponent implements OnInit, OnDestroy {
         editorOptions: {},
       },
       {
-        dataField: 'productor',
-        editorType: 'dxTextBox',
-        colSpan: 2,
-        editorOptions: {},
-      },
-      {
         dataField: 'tipo',
         editorType: 'dxTextBox',
         colSpan: 2,
@@ -160,7 +158,6 @@ export class ConfiguracionProductosComponent implements OnInit, OnDestroy {
     this.dataGrid.editing.form!.colCount = 10;
   }
   onEditorPreparing(event: any) {
-    console.log('On editor preparing', event);
     if (event.parentType === 'dataRow' && event.dataField === 'nombre') {
       if (event.editorOptions.value !== '') {
         event.editorOptions.disabled = true;
@@ -241,16 +238,12 @@ export class ConfiguracionProductosComponent implements OnInit, OnDestroy {
   }
 
   editRow(data: any) {
-    console.log('abrimos la edición', data);
     this.dataGrid.instance.editRow(data.rowIndex);
   }
 
-  onRowUpdated(event: any) {
-    console.log('actualizado', event);
-  }
+  onRowUpdated(event: any) {}
 
   onRowUpdating(event: any) {
-    console.log('se va a actualizar', event);
     this.productoViejoActualizar = event.oldData;
   }
 

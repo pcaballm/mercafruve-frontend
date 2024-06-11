@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SubastaService } from '../../services/subasta.service';
 import CustomStore from 'devextreme/data/custom_store';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { Subasta } from '../../modelos/subasta';
-import { CommonFunctionsService } from '../../common/common-functions-service';
+import { Subasta } from '../../models/subasta';
+import { CommonFunctionsService } from '../../helpers/common-functions-service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-configuracion-subastas',
@@ -21,7 +22,8 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
   fechaHoraLimite: any;
   constructor(
     private subastaService: SubastaService,
-    private commonFunctionsService: CommonFunctionsService
+    private commonFunctionsService: CommonFunctionsService,
+    private authService: AuthService
   ) {
     this.dataSource = new CustomStore({
       key: this.getDataSourceKey(),
@@ -41,6 +43,7 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
       .then((data) => data);
   }
   sendRequestInsert(values: any) {
+    let productor: any = this.authService.getDatosToken()?.sub;
     return this.subastaService
       .insertarSubasta(values)
       .toPromise()
@@ -54,6 +57,7 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
   }
 
   sendRequestUpdate(values: Subasta) {
+    let productor: any = this.authService.getDatosToken()?.sub;
     values = this.commonFunctionsService.combineObjects(
       this.productoViejoActualizar,
       values
@@ -103,13 +107,6 @@ export class ConfiguracionSubastasComponent implements OnInit, OnDestroy {
         dataField: 'producto',
         editorType: 'dxTextBox',
         colSpan: 1,
-        editorOptions: {},
-        validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
-      },
-      {
-        dataField: 'productor',
-        editorType: 'dxTextBox',
-        colSpan: 2,
         editorOptions: {},
         validationRules: [{ type: 'required', message: 'Campo obligatorio.' }],
       },

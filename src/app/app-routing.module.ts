@@ -7,7 +7,8 @@ import { ConfiguracionSubastasComponent } from './configuracion-subastas/configu
 import { SubastasComponent } from './subastas/subastas.component';
 import { DetalleSubastaComponent } from './subastas/detalle-subasta/detalle-subasta.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './helpers/auth.guard';
+import { AuthGuard } from '../helpers/auth.guard';
+import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
 ];
 
 @NgModule({

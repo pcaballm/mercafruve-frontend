@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductosService } from '../../services/productos.service';
-import { Producto } from '../../modelos/producto';
+import { Producto } from '../../models/producto';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
